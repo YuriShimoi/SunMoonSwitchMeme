@@ -1,0 +1,89 @@
+html, body {
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    
+    background: #D2D9E7;
+}
+
+#container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.switch input[type="checkbox"] {
+    display: none;
+}
+
+.switch .switch-button {
+    --size: 120px;
+    --toggle-border: 10px;
+    
+    display: flex;
+    width: calc(var(--size) * 2.3);
+    height: var(--size);
+    border-radius: calc(var(--size) / 2);
+
+    overflow: hidden;
+    background-color: #3477AE;
+    background-image: url(sliderbackground.png);
+    background-size: cover;
+    background-position-y: bottom;
+
+    box-shadow:
+        0px 2px 1px white,
+        0px -2px 1px #00000033,
+        inset 2px 5px 3px #00000077;
+    
+    transition:
+        background-color 1200ms cubic-bezier(0.54, 0.12, 0.39, 1.0),
+        background-position 1200ms cubic-bezier(0.54, 0.12, 0.39, 1.0);
+}
+
+.switch .switch-button::before {
+    --toggle-size: calc(var(--size) - calc(var(--toggle-border) * 2));
+
+    display: inline-block;
+    content: "";
+
+    width: var(--toggle-size);
+    height: var(--toggle-size);
+
+    position: relative;
+    left: var(--toggle-border);
+    top: var(--toggle-border);
+    border-radius: 50%;
+
+    box-shadow:
+        inset 1px 1px 1px white,
+        inset 0px -2px 1px #00000044,
+        2px 2px 3px #00000066,
+        0px 0px 1px var(--toggle-size) #d5d5ff19,
+        0px 0px 1px calc(var(--toggle-size) / 3) #d5d5ff19,
+        0px 0px 1px calc(var(--toggle-size) / 1.5) #d5d5ff19;
+        
+    background-image: url(slidersunmoon.png);
+    background-size: cover;
+    background-position-x: left;
+    transition:
+        left 1200ms cubic-bezier(0.54, 0.12, 0.39, 1.17),
+        right 1200ms cubic-bezier(0.54, 0.12, 0.39, 1.17),
+        background-position 800ms cubic-bezier(0.54, 0.12, 0.39, 1.0);
+}
+
+.switch input[type="checkbox"]:checked ~ .switch-button {
+    background-position-y: top;
+    background-color: #1B1E2A;
+}
+
+.switch input[type="checkbox"]:checked ~ .switch-button::before {
+    background-position-x: right;
+    left: calc(calc(100% - var(--toggle-size)) - var(--toggle-border));
+}
