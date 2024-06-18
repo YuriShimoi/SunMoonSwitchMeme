@@ -1,6 +1,7 @@
 html, body {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
@@ -9,23 +10,22 @@ html, body {
 }
 
 #container {
-    display: flex;
-    width: 100%;
     height: 100%;
+    width: 100%;
+
+    display: flex;
     gap: 20px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
-.switch input[type="checkbox"] {
-    display: none;
-}
-
-.switch .switch-button {
+.switch {
     --size: 120px;
-    --toggle-border: 10px;
-    
+    --toggle-border: calc(var(--size) / 10);
+
+    appearance: none;
+    margin: 0px;
     display: flex;
     width: calc(var(--size) * 2.3);
     height: var(--size);
@@ -47,7 +47,7 @@ html, body {
         background-position 1200ms cubic-bezier(0.54, 0.12, 0.39, 1.0);
 }
 
-.switch .switch-button::before {
+.switch::before {
     --toggle-size: calc(var(--size) - calc(var(--toggle-border) * 2));
 
     display: inline-block;
@@ -78,12 +78,12 @@ html, body {
         background-position 800ms cubic-bezier(0.54, 0.12, 0.39, 1.0);
 }
 
-.switch input[type="checkbox"]:checked ~ .switch-button {
+.switch:checked {
     background-position-y: top;
     background-color: #1B1E2A;
 }
 
-.switch input[type="checkbox"]:checked ~ .switch-button::before {
+.switch:checked::before {
     background-position-x: right;
     left: calc(calc(100% - var(--toggle-size)) - var(--toggle-border));
 }
